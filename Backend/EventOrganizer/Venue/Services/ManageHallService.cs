@@ -14,47 +14,35 @@ namespace Venue.Services
             _hallRepo = hallRepo;
         }
 
-        public async Task<Hall> AddServices(Hall item)
+        public async Task<Hall?> AddServices(Hall item)
         {
-
-            var hall =await _hallRepo.Add(item);
-            if (hall == null)
-                throw new InvalidOperationException("Unable to add hall right now");
-            
-            return hall;
+            var hall = await _hallRepo.Add(item);
+            return hall ?? throw new InvalidOperationException("Unable to add hall right now");
         }
 
-        public async Task<Hall> DeleteServices(Hall item)
-        {
 
+        public async Task<Hall?> DeleteServices(Hall item)
+        {
             var delHall = await _hallRepo.Delete(item);
-            if (delHall == null)
-                throw new InvalidOperationException("Unable to delete hall right now");
-           
-            return item;
-            
+            return delHall == null ? throw new InvalidOperationException("Unable to delete hall right now") : item;
         }
 
         public async Task<ICollection<Hall>> GetAllByLocations(int key)
         {
              var Halls = await _hallRepo.GetAll();
-            if (Halls == null)
-                throw new InvalidOperationException("Unable to get hall right now");
-             
-            return Halls.Where(s => s.City_ID == key).ToList();
+            return Halls == null
+                ? throw new InvalidOperationException("Unable to get hall right now")
+                : (ICollection<Hall>)Halls.Where(s => s.City_ID == key).ToList();
         }
 
         public async Task<Hall> GetByID(int key)
         {
             var hall = await _hallRepo.Get(key);
-            if (hall == null)
-                throw new InvalidOperationException("Unable to delete hall right now");
-            return hall;
-           
+            return hall ?? throw new InvalidOperationException("Unable to delete hall right now");
         }
 
 
-        public async Task<Hall> UpdateServices(Hall item)
+        public async Task<Hall?> UpdateServices(Hall item)
         {
             var existingHall = await _hallRepo.Get(item.HallID);
 
@@ -74,9 +62,9 @@ namespace Venue.Services
                 await _hallRepo.Update(existingHall);
                 return existingHall;
             }
-            throw new InvalidOperationException("Unable to delete hall right now");
-
+            throw new InvalidOperationException("Unable to update hall right now");
         }
+
 
     }
 }

@@ -15,43 +15,29 @@ namespace Venue.Services
         public async Task<Dining?> AddServices(Dining item)
         {
             var dining = await _repo.Add(item);
-            if (dining == null)
-                throw new InvalidOperationException("Unable to Add Dining right now");
-
-            return dining;
+            return dining ?? throw new InvalidOperationException("Unable to Add Dining right now");
         }
 
         public async Task<Dining?> DeleteServices(Dining item)
         {
             var dining = await _repo.Delete(item);
-            if (dining == null)
-                throw new InvalidOperationException("Unable to Delete Dining right now");
-
-            return dining;
+            return dining ?? throw new InvalidOperationException("Unable to Delete Dining right now");
         }
 
         public async Task<Dining> GetByID(int key)
         {
             var dining = await _repo.Get(key);
-            if (dining == null)
-                throw new InvalidOperationException("Unable to Get Dining right now");
-
-            return dining;
+            return dining ?? throw new InvalidOperationException("Unable to Get Dining right now");
         }
 
         public async Task<Dining?> UpdateServices(Dining item)
         {
-            var getDining = await _repo.Get(item.DiningID);
-            if (getDining == null)
-                throw new InvalidOperationException("Unable to find the dining right now");
-
+            var getDining = await _repo.Get(item.DiningID) ?? throw new InvalidOperationException("Unable to find the dining right now");
             getDining.Capacity = item.Capacity;
             getDining.SpaceSqft = item.SpaceSqft;
             var updatedDining= await _repo.Update(getDining);
-            if (updatedDining == null)
-                throw new InvalidOperationException("Unable to Update Dining right now");
-
-            return updatedDining;
+            return updatedDining
+                ?? throw new InvalidOperationException("Unable to Update Dining right now");
         }
     }
 }

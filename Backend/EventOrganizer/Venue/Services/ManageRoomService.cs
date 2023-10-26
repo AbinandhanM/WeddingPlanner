@@ -18,41 +18,26 @@ namespace Venue.Services
         public async Task<Room?> AddServices(Room item)
         {
             var room = await _roomRepo.Add(item);
-            if(room == null)
-                throw new InvalidOperationException("Unable to add room right now");
-
-            return item;
-            
+            return room == null ? throw new InvalidOperationException("Unable to add room right now") : item;
         }
 
         public async Task<Room?> DeleteServices(Room item)
         {
            
             var delRoom =await _roomRepo.Delete(item);
-            if(delRoom == null)
-                throw new InvalidOperationException("Unable to delete room right now");
-
-            return item;
-            
+            return delRoom == null ? throw new InvalidOperationException("Unable to delete room right now") : item;
         }
 
         public async Task<ICollection<Room>> GetAllByIDService(int id)
         {
 
             var rooms = await _roomRepo.GetAll();
-            if (rooms == null)
-                throw new InvalidOperationException("Rooms Are not there");
-
-            return rooms.Where(s => s.HallID == id).ToList();
-           
+            return rooms == null ? throw new InvalidOperationException("Rooms Are not there") : (ICollection<Room>)rooms.Where(s => s.HallID == id).ToList();
         }
 
         public async Task<Room?> UpdateServices(Room item)
         {
-            var getRoom= await _roomRepo.Get(item.RoomID);
-            if (getRoom == null)
-                throw new InvalidOperationException("Rooms Are not there");
-                
+            var getRoom= await _roomRepo.Get(item.RoomID) ?? throw new InvalidOperationException("Rooms Are not there");
             getRoom.NumberOfRooms = item.NumberOfRooms;
             var updatedRoom = await _roomRepo.Update(getRoom);
                 

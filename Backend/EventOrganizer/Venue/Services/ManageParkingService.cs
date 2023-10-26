@@ -17,37 +17,25 @@ namespace Venue.Services
         public async Task<Parking?> AddServices(Parking item)
         {
             var parking=await _repo.Add(item);
-            if (parking == null)
-                throw new InvalidOperationException("Unable to Add Parking right now");
-
-            return parking;
+            return parking ?? throw new InvalidOperationException("Unable to Add Parking right now");
         }
 
         public async Task<Parking?> DeleteServices(Parking item)
         {
             var delParking=await _repo.Delete(item);
-            if (delParking == null)
-                throw new InvalidOperationException("Unable to Delete Parking right now");
-
-            return delParking;
+            return delParking ?? throw new InvalidOperationException("Unable to Delete Parking right now");
         }
 
         public async Task<Parking> GetByID(int key)
         {
             var getParking=await _repo.Get(key);
-            if (getParking == null)
-                throw new InvalidOperationException("There is no Parking available");
-
-            return getParking;
+            return getParking ?? throw new InvalidOperationException("There is no Parking available");
         }
 
         public async Task<Parking?> UpdateServices(Parking item)
         {
             var updateParking = await _repo.Update(item);
-            if (updateParking == null)
-                throw new InvalidOperationException("Unable to update parking right now");
-
-            return updateParking;
+            return updateParking ?? throw new InvalidOperationException("Unable to update parking right now");
         }
     }
 }
