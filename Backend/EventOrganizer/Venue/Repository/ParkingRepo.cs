@@ -16,21 +16,13 @@ namespace Venue.Repository
 
         public async Task<Parking?> Add(Parking item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
 
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
 
             if (_context.Parkings == null)
-            {
                 throw new Exception("The Parking collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -46,25 +38,17 @@ namespace Venue.Repository
 
         public async Task<Parking?> Delete(Parking item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
 
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
 
             if (_context.Parkings == null)
-            {
                 throw new Exception("The Parking collection in the database context is null. Make sure it's properly configured.");
-            }
 
-            var existingParking = await _context.Parkings.FindAsync(item.ParkingID) ?? throw new InvalidOperationException($"Parking with ID {item.ParkingID} not found.");
             try
             {
+                var existingParking = await _context.Parkings.FindAsync(item.ParkingID) ?? throw new InvalidOperationException($"Parking with ID {item.ParkingID} not found.");
                 _context.Parkings.Remove(existingParking);
                 await _context.SaveChangesAsync();
                 return existingParking;
@@ -78,15 +62,10 @@ namespace Venue.Repository
         public async Task<Parking?> Get(int key)
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
-
 
             if (_context.Parkings == null)
-            {
                 throw new Exception("The Parking collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -102,14 +81,10 @@ namespace Venue.Repository
         public async Task<List<Parking>?> GetAll()
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Parkings == null)
-            {
                 throw new Exception("The Parking collection in the database context is null. Make sure it's properly configured.");
-            }
 
 
             try
@@ -125,25 +100,16 @@ namespace Venue.Repository
 
         public async Task<Parking?> Update(Parking item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
 
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
-
 
             if (_context.Parkings == null)
-            {
                 throw new Exception("The Parking collection in the database context is null. Make sure it's properly configured.");
-            }
 
-            var existingParking = await _context.Parkings.FindAsync(item.ParkingID) ?? throw new InvalidOperationException($"Parking with ID {item.ParkingID} not found.");
             try
             {
+                var existingParking = await _context.Parkings.FindAsync(item.ParkingID) ?? throw new InvalidOperationException($"Parking with ID {item.ParkingID} not found.");
                 _context.Entry(existingParking).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
                 return item;

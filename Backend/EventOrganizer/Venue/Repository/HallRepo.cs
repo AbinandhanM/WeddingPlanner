@@ -16,20 +16,11 @@ namespace Venue.Repository
 
         public async Task<Hall?> Add(Hall item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Halls == null)
-            {
                 throw new Exception("The Halls collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -45,20 +36,11 @@ namespace Venue.Repository
 
         public async Task<Hall?> Delete(Hall item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
-
+            
             if (_context.Halls == null)
-            {
                 throw new Exception("The Halls collection in the database context is null. Make sure it's properly configured.");
-            }
 
             var existingHall = await _context.Halls.FindAsync(item.HallID) ?? throw new InvalidOperationException($"Hall with ID {item.HallID} not found.");
             try
@@ -76,14 +58,10 @@ namespace Venue.Repository
         public async Task<Hall?> Get(int key)
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Halls == null)
-            {
                 throw new Exception("The Halls collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -99,14 +77,10 @@ namespace Venue.Repository
         public async Task<List<Hall>?> GetAll()
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Halls == null)
-            {
                 throw new Exception("The Halls collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -121,20 +95,11 @@ namespace Venue.Repository
 
         public async Task<Hall?> Update(Hall item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Halls == null)
-            {
                 throw new Exception("The Halls collection in the database context is null. Make sure it's properly configured.");
-            }
 
             var existingHall = await _context.Halls.FindAsync(item.HallID) ?? throw new InvalidOperationException($"Hall with ID {item.HallID} not found.");
             try

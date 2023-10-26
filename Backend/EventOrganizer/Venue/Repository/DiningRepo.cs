@@ -16,20 +16,11 @@ namespace Venue.Repository
 
         public async Task<Dining?> Add(Dining item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Dinings == null)
-            {
                 throw new Exception("The Dining collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -45,20 +36,11 @@ namespace Venue.Repository
 
         public async Task<Dining?> Delete(Dining item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Dinings == null)
-            {
                 throw new Exception("The Dining collection in the database context is null. Make sure it's properly configured.");
-            }
 
             var existingDining = await _context.Dinings.FindAsync(item.DiningID) ?? throw new InvalidOperationException($"Dining with ID {item.DiningID} not found.");
             try
@@ -76,14 +58,10 @@ namespace Venue.Repository
         public async Task<Dining?> Get(int key)
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Dinings == null)
-            {
                 throw new Exception("The Dining collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -99,14 +77,10 @@ namespace Venue.Repository
         public async Task<List<Dining>?> GetAll()
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Dinings == null)
-            {
                 throw new Exception("The Dining collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -121,20 +95,12 @@ namespace Venue.Repository
 
         public async Task<Dining?> Update(Dining item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Dinings == null)
-            {
                 throw new Exception("The Dining collection in the database context is null. Make sure it's properly configured.");
-            }
+            
 
             var existingDining = await _context.Dinings.FindAsync(item.DiningID) ?? throw new InvalidOperationException($"Dining with ID {item.DiningID} not found.");
             try

@@ -16,20 +16,11 @@ namespace Venue.Repository
         }
         public async Task<Room?> Add(Room item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Rooms == null)
-            {
                 throw new Exception("Rooms collection is null");
-            }
 
             try
             {
@@ -47,20 +38,11 @@ namespace Venue.Repository
 
         public async Task<Room?> Delete(Room item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Rooms == null)
-            {
                 throw new Exception("Rooms collection is null");
-            }
 
             var existingRoom = await _context.Rooms.FindAsync(item.RoomID) ?? throw new InvalidOperationException($"Room with ID {item.RoomID} not found.");
             try
@@ -79,14 +61,10 @@ namespace Venue.Repository
         public async Task<Room?> Get(int key)
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Rooms == null)
-            {
                 throw new Exception("Rooms collection is null");
-            }
 
             try
             {
@@ -103,14 +81,10 @@ namespace Venue.Repository
         public async Task<List<Room>?> GetAll()
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Rooms == null)
-            {
                 throw new Exception("Rooms collection is null");
-            }
 
             try
             {
@@ -127,20 +101,11 @@ namespace Venue.Repository
 
         public async Task<Room?> Update(Room item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Rooms == null)
-            {
                 throw new Exception("Rooms collection is null");
-            }
 
             var existingRoom = await _context.Rooms.FindAsync(item.RoomID) ?? throw new InvalidOperationException($"Room with ID {item.RoomID} not found.");
             try
