@@ -13,32 +13,27 @@ namespace Venue.Services
         {
             _amenityRepo = amenityRepo;
         }
-        public async Task<Amenity> AddServices(Amenity item)
+        public async Task<Amenity?> AddServices(Amenity item)
         {
-            
             var amenity = await _amenityRepo.Add(item);
-            if (amenity == null)
-                throw new InvalidOperationException("Unable to add amenity right now");
-            return amenity;
-           
+            return amenity ?? throw new InvalidOperationException("Unable to add amenity right now");
         }
 
-        public async Task<Amenity> DeleteServices(Amenity item)
+
+        public async Task<Amenity?> DeleteServices(Amenity item)
         {
-            var delAmenity=await _amenityRepo.Delete(item);
-            if (delAmenity == null)
-                throw new InvalidOperationException("Unable to delete amenity");
-            return delAmenity;
-            
+            var delAmenity = await _amenityRepo.Delete(item);
+            return delAmenity ?? throw new InvalidOperationException("Unable to delete amenity");
         }
 
-        public async Task<ICollection<Amenity>> GetAllByID(int key)
+
+        public async Task<ICollection<Amenity>?> GetAllByID(int key)
         {
             var allAmenities = await _amenityRepo.GetAll();
-            if (allAmenities == null)
-                throw new InvalidOperationException("Unable to get amenities");
-
-            return allAmenities.Where(s => s.HallID == key).ToList();
+            return allAmenities == null
+                ? throw new InvalidOperationException("Unable to get amenities")
+                : (ICollection<Amenity>)allAmenities.Where(s => s.HallID == key).ToList();
         }
+
     }
 }

@@ -15,27 +15,19 @@ namespace Venue.Services
         public async Task<Category?> AddServices(Category item)
         {
             var category = await _repo.Add(item);
-            if (category == null)
-                throw new InvalidOperationException("Unable to Add Category right now");
-
-            return category;
+            return category ?? throw new InvalidOperationException("Unable to Add Category right now");
         }
 
         public async Task<Category?> DeleteServices(Category item)
         {
             var category = await _repo.Add(item);
-            if (category == null)
-                throw new InvalidOperationException("Unable to delete category right now");
-
-            return category;
+            return category ?? throw new InvalidOperationException("Unable to delete category right now");
         }
 
         public async Task<ICollection<Category>> GetAllCategory()
         {
             var categories = await _repo.GetAll();
-            if (categories == null)
-                throw new InvalidOperationException("Unable to get Categories");
-            return categories;
+            return categories == null ? throw new InvalidOperationException("Unable to get Categories") : (ICollection<Category>)categories;
         }
     }
 }
