@@ -1,8 +1,8 @@
 ﻿namespace Venue.Interfaces.Services
 {
-    public interface IRoomService<T> : IUpdateSerivce<T>
+    public interface IRoomService<T,K> : IUpdateSerivce<T>
     {
-        public Task<ICollection<T>> GetAllByIDService(T item);
+        public Task<ICollection<T>> GetAllByIDService(K key);
 
     }
 }

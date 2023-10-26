@@ -2,7 +2,7 @@
 {
     public interface IUpdateSerivce<T> : IBaseService<T>
     {
-        public Task<T> UpdateServices(T item);
+        public Task<T?> UpdateServices(T item);
 
 
     }

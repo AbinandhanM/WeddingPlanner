@@ -15,20 +15,11 @@ namespace Venue.Repository
         }
         public async Task<Image?> Add(Image item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Images == null)
-            {
                 throw new Exception("Images collection is null");
-            }
 
             try
             {
@@ -44,20 +35,11 @@ namespace Venue.Repository
 
         public async Task<Image?> Delete(Image item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Images == null)
-            {
                 throw new Exception("Images collection is null");
-            }
 
             var existingImage = await _context.Images.FindAsync(item.ImageID) ?? throw new InvalidOperationException($"Image with ID {item.ImageID} not found.");
             try
@@ -75,14 +57,10 @@ namespace Venue.Repository
         public async Task<Image?> Get(int key)
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Images == null)
-            {
                 throw new Exception("Images collection is null");
-            }
 
             try
             {
@@ -98,14 +76,11 @@ namespace Venue.Repository
         public async Task<List<Image>?> GetAll()
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
+            
 
             if (_context.Images == null)
-            {
                 throw new Exception("Images collection is null");
-            }
 
             try
             {
@@ -120,16 +95,11 @@ namespace Venue.Repository
 
         public async Task<Image?> Update(Image item)
         {
-            if (item == null)
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-
             if (_context == null)
                 throw new InvalidOperationException("Context is null.");
 
             if (_context.Images == null)
-            {
                 throw new Exception("Images collection is null");
-            }
 
             var existingImage = await _context.Images.FindAsync(item.ImageID) ?? throw new InvalidOperationException($"Image with ID {item.ImageID} not found.");
             try

@@ -18,14 +18,10 @@ namespace Venue.Repository
         public async Task<Amenity?> Add(Amenity item)
         {
             if (_context == null)
-            {
                 throw new Exception("Context is null");
-            }
 
             if (_context.Amenities == null)
-            {
                 throw new Exception("Amenities collection is null");
-            }
 
             try
             {
@@ -44,9 +40,6 @@ namespace Venue.Repository
 
         public async Task<Amenity?> Delete(Amenity item)
         {
-            if (item == null)
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-
             if (_context == null)
                 throw new InvalidOperationException("Context is null.");
 
@@ -115,11 +108,6 @@ namespace Venue.Repository
 
         public async Task<Amenity?> Update(Amenity item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
             {
                 throw new InvalidOperationException("Context is null.");
