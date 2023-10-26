@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Venue.Context;
-using Venue.Interfaces;
+using Venue.Interfaces.Repository;
 using Venue.Models;
 
 namespace Venue.Repository

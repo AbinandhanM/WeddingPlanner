@@ -14,7 +14,6 @@ namespace Venue.Models
         [Required(ErrorMessage = "Description is required.")]
         public string? Description { get; set; }
 
-        public decimal? Cost { get; set; }
 
         [ForeignKey("Hall")]
         public int HallID { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Venue.Services
 {
-    public class Servicecs
+    public class ManageHallService
     {
     }
 }

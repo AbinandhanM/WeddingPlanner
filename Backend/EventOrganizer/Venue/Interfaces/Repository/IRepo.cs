@@ -1,4 +1,4 @@
-﻿namespace Venue.Interfaces
+﻿namespace Venue.Interfaces.Repository
 {
     public interface IRepo<K, T>
     {

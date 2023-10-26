@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Venue.Context;
-using Venue.Interfaces;
+using Venue.Interfaces.Repository;
 using Venue.Models;
 
 namespace Venue.Repository
@@ -45,18 +45,13 @@ namespace Venue.Repository
         public async Task<Amenity?> Delete(Amenity item)
         {
             if (item == null)
-            {
                 throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
 
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
+
             if (_context.Amenities == null)
-            {
                 throw new Exception("Amenities collection is null");
-            }
 
             var existingAmenity = await _context.Amenities.FindAsync(item.AmenityID) ?? throw new InvalidOperationException($"Amenity with ID {item.AmenityID} not found.");
             try
