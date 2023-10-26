@@ -21,12 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="CustomExceptions\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Models\DTO\" />
-    <Folder Include="Services\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>
