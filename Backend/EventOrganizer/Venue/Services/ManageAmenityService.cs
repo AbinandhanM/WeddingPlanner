@@ -15,46 +15,30 @@ namespace Venue.Services
         }
         public async Task<Amenity> AddServices(Amenity item)
         {
-            try
-            {
-                await _amenityRepo.Add(item);
-                return item;
-            }
-            catch (Exception)
-            {
-                throw new Exception(" Amenity Services can't be added");
-            }
+            
+            var amenity = await _amenityRepo.Add(item);
+            if (amenity == null)
+                throw new InvalidOperationException("Unable to add amenity right now");
+            return amenity;
+           
         }
 
         public async Task<Amenity> DeleteServices(Amenity item)
         {
-            try
-            {
-                await _amenityRepo.Delete(item);
-                return item;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Amenity Services can't be deleted");
-            }
+            var delAmenity=await _amenityRepo.Delete(item);
+            if (delAmenity == null)
+                throw new InvalidOperationException("Unable to delete amenity");
+            return delAmenity;
+            
         }
 
         public async Task<ICollection<Amenity>> GetAllByID(int key)
         {
-            try
-            {
-                var allAmenities = await _amenityRepo.GetAll();
-                if (allAmenities == null)
-                {
-                    return new List<Amenity>();
-                }
-                return allAmenities.Where(s => s.HallID ==key).ToList();
+            var allAmenities = await _amenityRepo.GetAll();
+            if (allAmenities == null)
+                throw new InvalidOperationException("Unable to get amenities");
 
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error in Get All By Locations ");
-            }
+            return allAmenities.Where(s => s.HallID == key).ToList();
         }
     }
 }

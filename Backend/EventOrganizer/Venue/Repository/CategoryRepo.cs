@@ -16,20 +16,11 @@ namespace Venue.Repository
 
         public async Task<Category?> Add(Category item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Categories == null)
-            {
                 throw new Exception("The Categories collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -45,20 +36,11 @@ namespace Venue.Repository
 
         public async Task<Category?> Delete(Category item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Categories == null)
-            {
                 throw new Exception("The Categories collection in the database context is null. Make sure it's properly configured.");
-            }
 
             var existingCategory = await _context.Categories.FindAsync(item.CategoryID) ?? throw new InvalidOperationException($"Category with ID {item.CategoryID} not found.");
             try
@@ -76,14 +58,10 @@ namespace Venue.Repository
         public async Task<Category?> Get(int key)
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Categories == null)
-            {
                 throw new Exception("The Categories collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -99,14 +77,10 @@ namespace Venue.Repository
         public async Task<List<Category>?> GetAll()
         {
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Categories == null)
-            {
                 throw new Exception("The Categories collection in the database context is null. Make sure it's properly configured.");
-            }
 
             try
             {
@@ -121,20 +95,11 @@ namespace Venue.Repository
 
         public async Task<Category?> Update(Category item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item), "Item is null.");
-            }
-
             if (_context == null)
-            {
                 throw new InvalidOperationException("Context is null.");
-            }
 
             if (_context.Categories == null)
-            {
                 throw new Exception("The Categories collection in the database context is null. Make sure it's properly configured.");
-            }
 
             var existingCategory = await _context.Categories.FindAsync(item.CategoryID) ?? throw new InvalidOperationException($"Category with ID {item.CategoryID} not found.");
             try
