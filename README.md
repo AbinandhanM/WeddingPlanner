@@ -1,4 +1,4 @@
-Enter file contents here# AWS IAM Identity Center Management Script
+# AWS IAM Identity Center Management Script
 
 This repository contains a Bash script to manage AWS IAM Identity Center (formerly AWS Single Sign-On) users, groups, accounts, and permissions. The script allows you to list users, groups, accounts, and permission sets, and to add or remove user roles and policies to/from accounts.
 
